@@ -43,4 +43,18 @@ public class UserController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(userResponse);
     }
+
+    @GetMapping(value = "/{userId}",
+            produces = {
+                    MediaType.APPLICATION_JSON_VALUE,
+                    MediaType.APPLICATION_XML_VALUE
+                 }
+            )
+    public ResponseEntity<UserResponse> getUser(@PathVariable String userId){
+        UserDTO userDTO = userService.getUserDetailsByUserId(userId);
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+        UserResponse userResponse = modelMapper.map(userDTO, UserResponse.class);
+        return ResponseEntity.status(HttpStatus.OK).body(userResponse);
+    }
 }

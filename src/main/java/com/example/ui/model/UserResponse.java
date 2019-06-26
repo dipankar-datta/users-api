@@ -1,11 +1,14 @@
 package com.example.ui.model;
 
+import java.util.List;
+
 public class UserResponse {
 
     private String firstName;
     private String lastName;
     private String email;
     private String userId;
+    private List<AlbumResponse> albums;
 
     public String getFirstName() {
         return firstName;
@@ -37,5 +40,13 @@ public class UserResponse {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public List<AlbumResponse> getAlbums() {
+        return albums;
+    }
+
+    public void setAlbums(List<AlbumResponse> albums) {
+        this.albums = albums;
     }
 }

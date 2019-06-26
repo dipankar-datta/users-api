@@ -1,6 +1,9 @@
 package com.example.shared.dto;
 
+import com.example.ui.model.AlbumResponse;
+
 import java.io.Serializable;
+import java.util.List;
 
 public class UserDTO implements Serializable {
 
@@ -12,6 +15,7 @@ public class UserDTO implements Serializable {
     private String email;
     private String password;
     private String encryptedPassword;
+    private List<AlbumResponse> albums;
 
     public String getUserId() {
         return userId;
@@ -59,5 +63,13 @@ public class UserDTO implements Serializable {
 
     public void setEncryptedPassword(String encryptedPassword) {
         this.encryptedPassword = encryptedPassword;
+    }
+
+    public List<AlbumResponse> getAlbums() {
+        return albums;
+    }
+
+    public void setAlbums(List<AlbumResponse> albums) {
+        this.albums = albums;
     }
 }
