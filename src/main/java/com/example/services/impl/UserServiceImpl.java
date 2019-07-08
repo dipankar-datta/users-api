@@ -7,8 +7,11 @@ import com.example.services.UserService;
 import com.example.shared.dto.UserDTO;
 import com.example.shared.util.Util;
 import com.example.ui.model.AlbumResponse;
+import feign.FeignException;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.core.env.Environment;
@@ -36,6 +39,8 @@ public class UserServiceImpl implements UserService {
     private Environment environment;
 
     private AlbumServiceClient albumServiceClient;
+
+    Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository,
@@ -94,7 +99,7 @@ public class UserServiceImpl implements UserService {
 //        ResponseEntity<List<AlbumResponse>> albumsResponse = restTemplate.exchange(albumsUrl, HttpMethod.GET, null, new ParameterizedTypeReference<List<AlbumResponse>>(){
 //        });
 //        List<AlbumResponse> albumsList = albumsResponse.getBody();
-        List<AlbumResponse> albumsList = albumServiceClient.getAlbums(userId);
+        List<AlbumResponse> albumsList =  albumServiceClient.getAlbums(userId);
         userDTO.setAlbums(albumsList);
         return userDTO;
     }
