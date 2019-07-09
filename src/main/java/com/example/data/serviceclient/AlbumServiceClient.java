@@ -16,7 +16,7 @@ import java.util.List;
 @FeignClient(name = "albums-ws", fallbackFactory = AlbumsServiceFallBackFactory.class)
 public interface AlbumServiceClient {
 
-    @GetMapping("/users/{id}/albums8")
+    @GetMapping("/users/{id}/albums")
     public List<AlbumResponse> getAlbums(@PathVariable String id);
 }
 
